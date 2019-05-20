@@ -5,7 +5,7 @@ public class User {
 
     private String uname;
 
-    private String utext;
+    private String upwd;
 
     public Integer getUid() {
         return uid;
@@ -23,16 +23,11 @@ public class User {
         this.uname = uname == null ? null : uname.trim();
     }
 
-    public String getUtext() {
-        return utext;
+    public String getUpwd() {
+        return upwd;
     }
 
-    public void setUtext(String utext) {
-        this.utext = utext == null ? null : utext.trim();
+    public void setUpwd(String upwd) {
+        this.upwd = upwd == null ? null : upwd.trim();
     }
-
-	@Override
-	public String toString() {
-		return "User [uid=" + uid + ", uname=" + uname + ", utext=" + utext + "]";
-	}
 }

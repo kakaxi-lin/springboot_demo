@@ -29,16 +29,16 @@ public class UserServiceImpl implements UserService{
 		for (int i = 0; i < 10; i++) {
 			User user=new User();
 			user.setUname("测试插入"+i);
-			user.setUtext("text"+i);
+			user.setUpwd("666");
 			userMapper.insert(user);
 		}
 	}
 	@Override
 	public void selectByPage() {
-		List<User> userList = userMapper.selectAll(new PageVO<User>());
+		/*List<User> userList = userMapper.selectAll(new PageVO<User>());
 		for(User u:userList){
 			System.out.println(u);
-		}
+		}*/
 	}
 
 }

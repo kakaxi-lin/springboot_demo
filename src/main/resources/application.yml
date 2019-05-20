@@ -1,0 +1,23 @@
+#配置服务
+server:
+  port: 8080 #端口号
+  servlet:
+    context-path: /kai #项目路径
+    
+#配置mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  config-location: classpath:mapper/config/mybatis-Configuration.xml
+  type-aliases-package: com.yk.po
+ 
+#配置druid连接池
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/kai?useUnicode=true&characterEncoding=utf-8
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: kai
+      initial-size: 3
+      min-idle: 5
+      max-active: 20

@@ -4,10 +4,10 @@
   <resultMap id="BaseResultMap" type="com.yk.po.User">
     <id column="uid" jdbcType="INTEGER" property="uid" />
     <result column="uname" jdbcType="VARCHAR" property="uname" />
-    <result column="utext" jdbcType="VARCHAR" property="utext" />
+    <result column="upwd" jdbcType="VARCHAR" property="upwd" />
   </resultMap>
   <sql id="Base_Column_List">
-    uid, uname, utext
+    uid, uname, upwd
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -15,20 +15,14 @@
     from user
     where uid = #{uid,jdbcType=INTEGER}
   </select>
-  <select id="selectAll"   resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from user 
-    
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
     where uid = #{uid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yk.po.User">
-    insert into user (uid, uname, utext
+    insert into user (uid, uname, upwd
       )
-    values (#{uid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{utext,jdbcType=VARCHAR}
+    values (#{uid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{upwd,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.yk.po.User">
@@ -40,8 +34,8 @@
       <if test="uname != null">
         uname,
       </if>
-      <if test="utext != null">
-        utext,
+      <if test="upwd != null">
+        upwd,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -51,8 +45,8 @@
       <if test="uname != null">
         #{uname,jdbcType=VARCHAR},
       </if>
-      <if test="utext != null">
-        #{utext,jdbcType=VARCHAR},
+      <if test="upwd != null">
+        #{upwd,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -62,8 +56,8 @@
       <if test="uname != null">
         uname = #{uname,jdbcType=VARCHAR},
       </if>
-      <if test="utext != null">
-        utext = #{utext,jdbcType=VARCHAR},
+      <if test="upwd != null">
+        upwd = #{upwd,jdbcType=VARCHAR},
       </if>
     </set>
     where uid = #{uid,jdbcType=INTEGER}
@@ -71,7 +65,7 @@
   <update id="updateByPrimaryKey" parameterType="com.yk.po.User">
     update user
     set uname = #{uname,jdbcType=VARCHAR},
-      utext = #{utext,jdbcType=VARCHAR}
+      upwd = #{upwd,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
 </mapper>
