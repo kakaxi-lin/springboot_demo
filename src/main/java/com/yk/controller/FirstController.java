@@ -14,13 +14,11 @@ public class FirstController {
 	@RequestMapping("/first")
 	public String first(HttpServletRequest request){
 		System.out.println("cccccccc");
-		System.out.println("dddd2");
 		request.setAttribute("kai", "凯哥好12");
-		System.out.println("哈哈哈1");
 //		userService.selectUserById();		
 		try {
-//			userService.selectByPage();
-			userService.insertUser();
+			userService.selectByPage();
+//			userService.insertUser();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

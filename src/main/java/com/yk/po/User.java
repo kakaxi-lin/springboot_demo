@@ -7,7 +7,12 @@ public class User {
 
     private String upwd;
 
-    public Integer getUid() {
+    @Override
+	public String toString() {
+		return "User [uid=" + uid + ", uname=" + uname + ", upwd=" + upwd + "]";
+	}
+
+	public Integer getUid() {
         return uid;
     }
 
