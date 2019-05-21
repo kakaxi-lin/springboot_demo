@@ -14,7 +14,7 @@ public class FirstController {
 	@RequestMapping("/first")
 	public String first(HttpServletRequest request){
 		System.out.println("cccccccc");
-		request.setAttribute("kai", "凯哥好12");
+		request.setAttribute("kai", "凯哥好666");
 //		userService.selectUserById();		
 		try {
 			userService.selectByPage();
