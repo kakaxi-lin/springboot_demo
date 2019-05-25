@@ -27,4 +27,6 @@ spring:
       test-on-borrow: false
       #归还连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true
       test-on-return: false
-      
+  # 禁用缓存
+  thymeleaf:
+    cache: false

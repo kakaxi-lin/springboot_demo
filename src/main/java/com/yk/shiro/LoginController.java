@@ -13,19 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LoginController {
-	@RequestMapping("/login")
-	@ResponseBody
-	public void login(String username,String pwd){
+	@RequestMapping("/loginIn")
+	public String loginIn(String username,String pwd){
 		System.out.println("username..."+username);
 		System.out.println("pwd..."+pwd);
-		//初始化SecurityManager对象
-				Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-realm.ini");
-
-		        //通过SecurityManager工厂对象,获取SecurityManager实例对象.
-		        SecurityManager securityManager =  factory.getInstance();
-
-		        // 把 securityManager 实例 绑定到 SecurityUtils
-		        SecurityUtils.setSecurityManager(securityManager);
 		//组建Subject主体.
         Subject subject = SecurityUtils.getSubject();
 
@@ -34,16 +25,22 @@ public class LoginController {
         try {
 			subject.login(token);
 			System.out.println("验证成功");
+			return "welcome";
 		} catch (AuthenticationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("验证失败。。。");
+			return null;
 		}
 	}
 	
-	@RequestMapping("/login1")
-	@ResponseBody
-	public void login1(String username,String pwd){
-		System.out.println("xxxxxx");
+	@RequestMapping("/login")
+	public String login(){
+		return "login";
+	}
+	
+	@RequestMapping("/welcome")
+	public String welcome(){
+		return "welcome";
 	}
 }
