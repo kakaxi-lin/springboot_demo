@@ -13,6 +13,8 @@ public class MyRealm extends AuthorizingRealm{
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		// TODO Auto-generated method stub
 		System.out.println("授权。。。");
+		String name=(String) principals.getPrimaryPrincipal();
+		System.out.println("授权name..."+name);
 		return null;
 	}
 	//认证
@@ -23,8 +25,8 @@ public class MyRealm extends AuthorizingRealm{
 		String pwd=null;
 		System.out.println("name..."+name);
 		System.out.println("认证。。。");
-		if(name.equals("root")){
-			pwd="123456";
+		if(name.equals("k")){
+			pwd="1";
 			SimpleAuthenticationInfo s=new SimpleAuthenticationInfo (name,pwd,"xx");
 			return s;		
 		}else{

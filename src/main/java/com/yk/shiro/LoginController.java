@@ -3,16 +3,15 @@ package com.yk.shiro;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.config.IniSecurityManagerFactory;
-import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
-import org.apache.shiro.util.Factory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LoginController {
+
 	@RequestMapping("/loginIn")
 	public String loginIn(String username,String pwd){
 		System.out.println("username..."+username);
@@ -42,5 +41,17 @@ public class LoginController {
 	@RequestMapping("/welcome")
 	public String welcome(){
 		return "welcome";
+	}
+	@RequestMapping("/403")
+	public String wrong(){
+		return "403";
+	}
+	
+	@RequestMapping("/visit")
+	@ResponseBody
+	@RequiresPermissions("user:delete")
+	public String visit(){
+		 Subject subject = SecurityUtils.getSubject();
+		return "visit";
 	}
 }

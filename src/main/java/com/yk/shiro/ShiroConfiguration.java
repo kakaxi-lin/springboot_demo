@@ -2,19 +2,19 @@ package com.yk.shiro;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-
+import java.util.Properties;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.apache.shiro.mgt.SecurityManager;
 
 @Configuration
 public class ShiroConfiguration {
 	@Bean
-	public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
-		System.out.println("ShiroConfiguration.shirFilter()");
+	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
+		System.out.println("ShiroConfiguration.shiroFilter()");
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
 		// 拦截器.
@@ -38,8 +38,6 @@ public class ShiroConfiguration {
 		// 登录成功后要跳转的链接
 		shiroFilterFactoryBean.setSuccessUrl("/welcome");
 
-		// 未授权界面;
-		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}
@@ -56,5 +54,14 @@ public class ShiroConfiguration {
 	public MyRealm authRealm() {
 		MyRealm myShiroRealm = new MyRealm();
 		return myShiroRealm;
+	}
+
+	@Bean
+	public SimpleMappingExceptionResolver createSimpleMappingExceptionResolver() {
+		SimpleMappingExceptionResolver r = new SimpleMappingExceptionResolver();
+		Properties mappings = new Properties();
+		mappings.setProperty("UnauthorizedException", "/403");
+		r.setExceptionMappings(mappings); 
+		return r;
 	}
 }
