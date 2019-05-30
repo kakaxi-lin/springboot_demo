@@ -47,11 +47,17 @@ public class LoginController {
 		return "403";
 	}
 	
-	@RequestMapping("/visit")
+	@RequestMapping("/delete")
 	@ResponseBody
 	@RequiresPermissions("user:delete")
 	public String visit(){
-		 Subject subject = SecurityUtils.getSubject();
-		return "visit";
+		return "delete";
+	}
+	
+	@RequestMapping("/update")
+	@ResponseBody
+	@RequiresPermissions("user:update")
+	public String update(){
+		return "update";
 	}
 }

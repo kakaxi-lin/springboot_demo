@@ -1,10 +1,13 @@
 package com.yk.shiro;
 
+import java.util.HashSet;
+import java.util.Set;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 public class MyRealm extends AuthorizingRealm{
@@ -13,9 +16,14 @@ public class MyRealm extends AuthorizingRealm{
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		// TODO Auto-generated method stub
 		System.out.println("授权。。。");
+		SimpleAuthorizationInfo a =new SimpleAuthorizationInfo();
+		Set<String> set =new HashSet<String>();
+		set.add("user:delete");
+		set.add("user:add");
+		a.addStringPermissions(set);
 		String name=(String) principals.getPrimaryPrincipal();
 		System.out.println("授权name..."+name);
-		return null;
+		return a;
 	}
 	//认证
 	@Override
