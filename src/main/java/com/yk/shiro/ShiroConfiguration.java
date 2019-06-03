@@ -5,7 +5,9 @@ import java.util.Map;
 import java.util.Properties;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
@@ -13,6 +15,38 @@ import org.apache.shiro.mgt.SecurityManager;
 
 @Configuration
 public class ShiroConfiguration {
+	/**
+	 * cookie对象; rememberMeCookie()方法是设置Cookie的生成模版，比如cookie的name，cookie的有效时间等等。
+	 * 
+	 * @return
+	 */
+	@Bean
+	public SimpleCookie rememberMeCookie() {
+		// System.out.println("ShiroConfiguration.rememberMeCookie()");
+		// 这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
+		SimpleCookie simpleCookie = new SimpleCookie("kk1");
+		// <!-- 记住我cookie生效时间7天 ,单位秒;-->
+		simpleCookie.setMaxAge(604800);
+		return simpleCookie;
+	}
+
+	/**
+	 * cookie管理对象;
+	 * rememberMeManager()方法是生成rememberMe管理器，而且要将这个rememberMe管理器设置到securityManager中
+	 * 
+	 * @return
+	 */
+	@Bean
+	public CookieRememberMeManager rememberMeManager() {
+		// System.out.println("ShiroConfiguration.rememberMeManager()");
+		CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+		cookieRememberMeManager.setCookie(rememberMeCookie());
+		// rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度(128 256 512 位)
+		cookieRememberMeManager.setCipherKey("1234567812345678".getBytes());
+//		System.out.println(Base64.decode("2AvVhdsgUs0FSA3SDFAdag==").toString());
+		return cookieRememberMeManager;
+	}
+
 	@Bean
 	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
 		System.out.println("ShiroConfiguration.shiroFilter()");
@@ -31,6 +65,7 @@ public class ShiroConfiguration {
 		filterChainDefinitionMap.put("/loginIn", "anon");
 		// 配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了
 		filterChainDefinitionMap.put("/logout", "logout");
+		filterChainDefinitionMap.put("/delete", "user");
 		// <!-- 过滤链定义，从上向下顺序执行，一般将/**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
 		// <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
 		filterChainDefinitionMap.put("/**", "authc");
@@ -47,6 +82,8 @@ public class ShiroConfiguration {
 	public DefaultWebSecurityManager securityManager(MyRealm myShiroRealm) {
 		DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
 		manager.setRealm(myShiroRealm);
+		//注入自动登录manager
+		manager.setRememberMeManager(rememberMeManager());
 		return manager;
 	}
 
