@@ -6,8 +6,11 @@ server:
     
 #配置mybatis
 mybatis:
+  #定义Mapper的XML路径
   mapper-locations: classpath:mapper/*Mapper.xml
+  #配置文件路径
   config-location: classpath:mapper/config/mybatis-Configuration.xml
+  #定义别名扫描的包
   type-aliases-package: com.yk.po
  
 #JDBC配置
@@ -30,3 +33,10 @@ spring:
   # 禁用缓存
   thymeleaf:
     cache: false
+    
+#日志配置
+logging:
+  level:
+    org.springframework: info
+    root: info
+    org.mybatis: info

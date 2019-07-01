@@ -25,7 +25,7 @@ public class DialectFactory {
      */
     public static Dialect buildDialect(Configuration configuration) {
     	String dialectClass =configuration.getVariables().getProperty("mysqlDialectClass");
-    	System.out.println("dialectClass..."+dialectClass);
+//    	System.out.println("dialectClass..."+dialectClass);
     	/*String databaseType = PropertiesUtils.getProperties("databaseType");
     	
         if (dialectClass == null) {
