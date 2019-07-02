@@ -1,9 +1,18 @@
 package com.yk.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.yk.po.User;
 import com.yk.service.UserService;
 
 @Controller
@@ -24,6 +33,16 @@ public class FirstController {
 			e.printStackTrace();
 		}
 		return "first";
+	}
+	
+	@RequestMapping("/validate")
+	@ResponseBody
+	public void validate(@Valid User user,Errors errors){
+		List<ObjectError> errorList = errors.getAllErrors();
+		for(ObjectError oe:errorList){
+			System.out.println(oe.getDefaultMessage());
+		}
+		
 	}
 
 }
