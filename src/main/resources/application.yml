@@ -40,3 +40,5 @@ logging:
     org.springframework: info
     root: info
     org.mybatis: info
+    #打印Mybatis sql语句
+    com.yk.dao: debug
