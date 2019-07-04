@@ -64,6 +64,21 @@
    			<artifactId>shiro-spring-boot-starter</artifactId>
     		<version>1.4.1</version>
 		</dependency>
+    	<!-- ActiveMQ -->
+    	<dependency>
+    		<groupId>org.springframework.boot</groupId>
+   			<artifactId>spring-boot-starter-activemq</artifactId>
+		</dependency>
+    	<!-- 连接池  springboot 2.1版本引入此依赖-->
+    	<dependency>
+    		<groupId>org.messaginghub</groupId>
+    		<artifactId>pooled-jms</artifactId>
+		</dependency>
+		<!-- 连接池  springboot 2.0版本引入此依赖-->
+    	<!-- <dependency>
+    		<groupId>org.apache.activemq</groupId>
+   			<artifactId>activemq-pool</artifactId>
+		</dependency> -->
 		
 	</dependencies>
 

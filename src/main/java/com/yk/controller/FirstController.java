@@ -12,6 +12,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yk.activemq.MQService;
 import com.yk.po.User;
 import com.yk.service.UserService;
 
@@ -20,9 +21,12 @@ import com.yk.service.UserService;
 public class FirstController {
 	@Resource
 	UserService userService;
+	
+	@Resource
+	MQService mqService;
+	
 	@RequestMapping("/first")
 	public String first(HttpServletRequest request){
-		System.out.println("cccccccc");
 		request.setAttribute("kai", "凯哥好666");
 //		userService.selectUserById();		
 		try {
@@ -42,6 +46,14 @@ public class FirstController {
 		for(ObjectError oe:errorList){
 			System.out.println(oe.getDefaultMessage());
 		}
+		
+	}
+	
+	@RequestMapping("/mq")
+	@ResponseBody
+	public void sendMsg(){
+		String msg="解脱吧。。。";
+		mqService.sendMsg(msg);
 		
 	}
 

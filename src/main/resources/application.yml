@@ -33,6 +33,22 @@ spring:
   # 禁用缓存
   thymeleaf:
     cache: false
+  #ActiveMQ配置
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+    pool:
+      #是否启用连接池
+      enabled: true
+      #连接池最大连接数配置
+      max-connections: 50
+  jms:
+    #是否使用发布订阅模式，默认为false，即默认点对点模式
+    pub-sub-domain: true
+    template:
+      default-destination: activemq.default.destination
+    
     
 #日志配置
 logging:
