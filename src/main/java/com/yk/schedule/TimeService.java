@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 @EnableScheduling  //开启定时任务
 @EnableAsync    //开启多线程
 public class TimeService {
-	@Scheduled(fixedRate=3000)
-	@Async("asyncServiceExecutor")
+	/*@Scheduled(fixedRate=3000)
+	@Async("asyncServiceExecutor")*/
 	public void print(){
 		System.out.println("都是垃圾。。。");
 		System.out.println(Thread.currentThread().getName());

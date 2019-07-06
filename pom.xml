@@ -28,6 +28,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		
 		<!-- 打war包需要引入 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -41,23 +42,27 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
 		<!--mybatis-->
 		<dependency>
 		    <groupId>org.mybatis.spring.boot</groupId>
 		    <artifactId>mybatis-spring-boot-starter</artifactId>
 		    <version>2.0.0</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.34</version>
 			<scope>runtime</scope>
 		</dependency>
+		
 		<dependency>
       		<groupId>com.alibaba</groupId>
       		<artifactId>druid-spring-boot-starter</artifactId>
       		<version>1.1.10</version>
     	</dependency>
+    	
     	<!-- shiro -->
     	<dependency>
     		<groupId>org.apache.shiro</groupId>
@@ -69,6 +74,7 @@
     		<groupId>org.springframework.boot</groupId>
    			<artifactId>spring-boot-starter-activemq</artifactId>
 		</dependency>
+		
     	<!-- 连接池  springboot 2.1版本引入此依赖-->
     	<dependency>
     		<groupId>org.messaginghub</groupId>
@@ -79,6 +85,12 @@
     		<groupId>org.apache.activemq</groupId>
    			<artifactId>activemq-pool</artifactId>
 		</dependency> -->
+		
+		<!-- WebSocket -->
+    	<dependency>
+    		<groupId>org.springframework.boot</groupId>
+   			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
 		
 	</dependencies>
 

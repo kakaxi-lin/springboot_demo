@@ -39,6 +39,11 @@ public class FirstController {
 		return "first";
 	}
 	
+	@RequestMapping("/websocket")
+	public String websocket(HttpServletRequest request){
+		return "websocket";
+	}
+	
 	@RequestMapping("/validate")
 	@ResponseBody
 	public void validate(@Valid User user,Errors errors){
