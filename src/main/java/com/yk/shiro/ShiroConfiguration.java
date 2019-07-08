@@ -58,6 +58,8 @@ public class ShiroConfiguration {
 		// "anon")来配置匿名访问，必须配置到每个静态目录
 		filterChainDefinitionMap.put("/css/**", "anon");
 		filterChainDefinitionMap.put("/fonts/**", "anon");
+		//去掉websocket拦截
+		filterChainDefinitionMap.put("/ws/**", "anon");
 		filterChainDefinitionMap.put("/first/**", "anon");
 		filterChainDefinitionMap.put("/img/**", "anon");
 		filterChainDefinitionMap.put("/js/**", "anon");

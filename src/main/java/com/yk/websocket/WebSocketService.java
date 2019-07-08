@@ -1,4 +1,4 @@
-package websocket;
+package com.yk.websocket;
 
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -14,21 +14,6 @@ import org.springframework.stereotype.Service;
 @ServerEndpoint("/ws")
 @Service
 public class WebSocketService {
-	/*@OnOpen
-	public void onOpen(){
-		System.out.println("开启websocket链接。。。");
-	}
-	
-	@OnMessage
-	public void onMessage(String msg){
-		System.out.println("传输消息。。。"+msg);
-	}
-	
-	@OnClose
-	public void onClosed(){
-		System.out.println("关闭websocket链接。。。");
-	}*/
-	
 	 private static int onlineCount=0;
 	    private static CopyOnWriteArrayList<WebSocketService> webSocketSet=new CopyOnWriteArrayList<WebSocketService>();
 	    private Session session;
