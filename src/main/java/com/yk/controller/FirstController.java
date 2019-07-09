@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yk.activemq.MQService;
 import com.yk.po.User;
 import com.yk.service.UserService;
+import com.yk.websocket.WebSocketService;
 
 @Controller
 @RequestMapping("/first")
@@ -26,6 +27,9 @@ public class FirstController {
 	
 	@Resource
 	MQService mqService;
+	
+	@Resource
+	WebSocketService webSocketService;
 	
 	@RequestMapping("/first")
 	public String first(HttpServletRequest request){
@@ -61,6 +65,13 @@ public class FirstController {
 	public void sendMsg(){
 		String msg="解脱吧。。。";
 		mqService.sendMsg(msg);
+		
+	}
+	
+	@RequestMapping("/sendWebsocketMsg")
+	@ResponseBody
+	public void sendWebsocketMsg(String message){
+		webSocketService.sendWebsocketMsg(message);
 		
 	}
 

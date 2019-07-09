@@ -36,7 +36,7 @@ public class WebSocketService {
 	    @OnMessage
 	    public void onMessage(String message,Session session){
 	        System.out.println("来自客户端的消息："+message);
-//	        群发消息
+	        //群发消息
 	        for (WebSocketService item:webSocketSet){
 	            try {
 	                item.sendMessage(message);
@@ -67,5 +67,16 @@ public class WebSocketService {
 	    	WebSocketService.onlineCount--;
 	    }
 
+	    public void sendWebsocketMsg(String message){
+	    	for (WebSocketService item:webSocketSet){
+	    		System.out.println("session...id..."+item.session.getId());
+	            try {
+	                item.sendMessage(message);
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	                continue;
+	            }
+	        }
+	    }
 
 }
