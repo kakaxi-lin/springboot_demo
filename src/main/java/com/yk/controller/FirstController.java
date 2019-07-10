@@ -34,6 +34,8 @@ public class FirstController {
 	@RequestMapping("/first")
 	public String first(HttpServletRequest request){
 		request.setAttribute("kai", "凯哥好666");
+		request.setAttribute("ctx", request.getServerName()+":"+request.getServerPort()+request.getContextPath());
+		System.out.println(request.getServerName()+":"+request.getServerPort()+request.getContextPath());
 //		userService.selectUserById();		
 		try {
 			userService.selectByPage();

@@ -3,9 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+var ctxPath  = "[[${ctx}]]";
+console.log(ctxPath);
+</script>
 </head>
 <body>
 水电费第三方胜多负少aaaa
 <div th:text=${kai}></div>
+<div th:text=${ctx}></div>
 </body>
 </html>

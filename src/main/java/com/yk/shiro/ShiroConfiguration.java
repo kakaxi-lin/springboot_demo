@@ -61,6 +61,7 @@ public class ShiroConfiguration {
 		//去掉websocket拦截
 		filterChainDefinitionMap.put("/ws/**", "anon");
 		filterChainDefinitionMap.put("/first/**", "anon");
+		filterChainDefinitionMap.put("/shopping/**", "anon");
 		filterChainDefinitionMap.put("/img/**", "anon");
 		filterChainDefinitionMap.put("/js/**", "anon");
 		filterChainDefinitionMap.put("/html/**", "anon");

@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.yk.interceptor.KaiInterceptor;
 
 @SpringBootApplication
-@MapperScan(basePackages="com.yk.dao")
+@MapperScan(basePackages={"com.yk.dao","com.yk.shopping.dao"})
 public class SpringbootDemoApplication extends SpringBootServletInitializer implements WebMvcConfigurer{
 
 	@Override

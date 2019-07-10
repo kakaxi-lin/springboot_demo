@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yk.shopping.dao.PurchaseRecordMapper">
+  <resultMap id="BaseResultMap" type="com.yk.shopping.po.PurchaseRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="sum" jdbcType="DOUBLE" property="sum" />
+    <result column="purchase_date" jdbcType="TIMESTAMP" property="purchaseDate" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, product_id, price, quantity, sum, purchase_date, note
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from purchase_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yk.shopping.po.PurchaseRecord">
+    insert into purchase_record (id, user_id, product_id, 
+      price, quantity, sum, 
+      purchase_date, note)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, 
+      #{price,jdbcType=DOUBLE}, #{quantity,jdbcType=INTEGER}, #{sum,jdbcType=DOUBLE}, 
+      #{purchaseDate,jdbcType=TIMESTAMP}, #{note,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yk.shopping.po.PurchaseRecord">
+    insert into purchase_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="sum != null">
+        sum,
+      </if>
+      <if test="purchaseDate != null">
+        purchase_date,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="sum != null">
+        #{sum,jdbcType=DOUBLE},
+      </if>
+      <if test="purchaseDate != null">
+        #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yk.shopping.po.PurchaseRecord">
+    update purchase_record
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="sum != null">
+        sum = #{sum,jdbcType=DOUBLE},
+      </if>
+      <if test="purchaseDate != null">
+        purchase_date = #{purchaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yk.shopping.po.PurchaseRecord">
+    update purchase_record
+    set user_id = #{userId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DOUBLE},
+      quantity = #{quantity,jdbcType=INTEGER},
+      sum = #{sum,jdbcType=DOUBLE},
+      purchase_date = #{purchaseDate,jdbcType=TIMESTAMP},
+      note = #{note,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
