@@ -12,9 +12,11 @@ $(function(){
 		productId:222,
 		quantity:3
 	}
-	$.get("/kai/shopping/purchase",params,function(result){
+	for(var i = 0;i<4000;i++){
+		$.get("/kai/shopping/purchase",params,function(result){
 		console.log(result.message);
 	})
+	}
 })
 </script>
 </head>

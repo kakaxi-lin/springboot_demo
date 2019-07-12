@@ -13,12 +13,12 @@
     id, product_name, stock, price, version, note
   </sql>
   
-  <!-- 获取产品 -->
+  <!-- 获取产品 --><!-- 加入 forupdate 设置悲观锁 -->
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from product
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER} for update
   </select>
   
   <!-- 减少库存 -->
