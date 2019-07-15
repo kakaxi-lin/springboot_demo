@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yk.activemq.MQService;
 import com.yk.po.User;
+import com.yk.po.ValueDemo;
 import com.yk.service.UserService;
 import com.yk.websocket.WebSocketService;
 
@@ -31,8 +32,14 @@ public class FirstController {
 	@Resource
 	WebSocketService webSocketService;
 	
+	@Resource
+	ValueDemo value;
+	
 	@RequestMapping("/first")
 	public String first(HttpServletRequest request){
+		System.out.println(value.getDesc());
+		System.out.println(value.getIp());
+		System.out.println(value.getName());
 		request.setAttribute("kai", "凯哥好666");
 		request.setAttribute("ctx", request.getServerName()+":"+request.getServerPort()+request.getContextPath());
 		System.out.println(request.getServerName()+":"+request.getServerPort()+request.getContextPath());

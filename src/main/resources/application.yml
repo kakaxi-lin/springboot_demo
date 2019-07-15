@@ -58,3 +58,7 @@ logging:
     org.mybatis: info
     #打印Mybatis sql语句
     com.yk.dao: debug
+    
+yk:
+  ip: 130.10.5.122
+  name: yk-server
