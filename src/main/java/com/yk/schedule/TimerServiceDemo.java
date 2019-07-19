@@ -3,14 +3,11 @@ package com.yk.schedule;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TimerService {
+public class TimerServiceDemo {
 	static int num=0;
 	public static void main(String[] args) {
 		Timer timer=new Timer();
-//		schedule 按照上次结束的时间进行计算
-//		timer.schedule(task, time);
 		System.out.println("第一次执行延迟三秒");
-//		scheduleAtFixedRate 按照上次开始的时间进行计算
 		timer.scheduleAtFixedRate(new TimerTask() {
 			
 			@Override
