@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 @EnableScheduling  //开启定时任务
 @EnableAsync    //开启多线程
-public class TimeService {
+public class ScheduleService {
 	/*@Scheduled(fixedRate=3000)
 	@Async("asyncServiceExecutor")*/
 	public void print(){
