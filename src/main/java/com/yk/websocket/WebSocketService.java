@@ -1,8 +1,7 @@
 package com.yk.websocket;
 
 import java.io.IOException;
-import java.util.concurrent.CopyOnWriteArrayList;
-
+import java.util.concurrent.CopyOnWriteArraySet;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -14,69 +13,41 @@ import org.springframework.stereotype.Service;
 @ServerEndpoint("/ws")
 @Service
 public class WebSocketService {
-	 private static int onlineCount=0;
-	    private static CopyOnWriteArrayList<WebSocketService> webSocketSet=new CopyOnWriteArrayList<WebSocketService>();
-	    private Session session;
+	private static CopyOnWriteArraySet<Session> sessionSet=new CopyOnWriteArraySet<Session>();
 	 
-	    @OnOpen
-	    public void onOpen(Session session){
-	        this.session=session;
-	        webSocketSet.add(this);//加入set中
-	        addOnlineCount();
-	        System.out.println("有新连接加入！当前在线人数为"+getOnlineCount());
-	    }
-	 
-	    @OnClose
-	    public void onClose(){
-	        webSocketSet.remove(this);
-	        subOnlineCount();
-	        System.out.println("有一连接关闭！当前在线人数为" + getOnlineCount());
-	    }
-	 
-	    @OnMessage
-	    public void onMessage(String message,Session session){
-	        System.out.println("来自客户端的消息："+message);
-	        //群发消息
-	        for (WebSocketService item:webSocketSet){
-	            try {
-	                item.sendMessage(message);
-	            } catch (IOException e) {
-	                e.printStackTrace();
-	                continue;
-	            }
-	        }
-	    }
-	 
-	    @OnError
-	    public void onError(Session session,Throwable throwable){
-	        System.out.println("发生错误！");
-	        throwable.printStackTrace();
-	    }
-	//   下面是自定义的一些方法
-	    public void sendMessage(String message) throws IOException {
-	        this.session.getBasicRemote().sendText(message);
-	    }
-	    
-	    public static synchronized int getOnlineCount(){
-	        return onlineCount;
-	    }
-	    public static synchronized void addOnlineCount(){
-	    	WebSocketService.onlineCount++;
-	    }
-	    public static synchronized void subOnlineCount(){
-	    	WebSocketService.onlineCount--;
-	    }
-
-	    public void sendWebsocketMsg(String message){
-	    	for (WebSocketService item:webSocketSet){
-	    		System.out.println("session...id..."+item.session.getId());
-	            try {
-	                item.sendMessage(message);
-	            } catch (IOException e) {
-	                e.printStackTrace();
-	                continue;
-	            }
-	        }
-	    }
+    @OnOpen
+    public void onOpen(Session session){
+        sessionSet.add(session);//加入set中
+    }
+ 
+    @OnClose
+    public void onClose(Session session){
+    	sessionSet.remove(session);
+    }
+ 
+    @OnMessage
+    public void onMessage(String message,Session session){
+        System.out.println("来自客户端的消息："+message);
+    }
+ 
+    @OnError
+    public void onError(Session session,Throwable throwable){
+        throwable.printStackTrace();
+    }
+//   下面是自定义的一些方法
+    /*public void sendMessage(String message) throws IOException {
+        this.session.getBasicRemote().sendText(message);
+    }*/
+    
+    public void sendMessages(String message){
+    	System.out.println("发送session数量。。。"+sessionSet.size());
+    	sessionSet.forEach(set -> {
+    		try {
+				set.getBasicRemote().sendText(message);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	});
+    }
 
 }

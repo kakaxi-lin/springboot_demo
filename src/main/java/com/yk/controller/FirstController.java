@@ -80,7 +80,7 @@ public class FirstController {
 	@RequestMapping("/sendWebsocketMsg")
 	@ResponseBody
 	public void sendWebsocketMsg(String message){
-		webSocketService.sendWebsocketMsg(message);
+		webSocketService.sendMessages(message);
 		
 	}
 
